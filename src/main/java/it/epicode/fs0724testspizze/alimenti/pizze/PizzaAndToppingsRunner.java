@@ -7,6 +7,8 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 @Order(3)
@@ -28,6 +30,12 @@ public class PizzaAndToppingsRunner implements ApplicationRunner {
             pizzaRepository.save(pizzaMargherita);
             pizzaRepository.save(pizzaFunghi);
             pizzaRepository.save(pizzaProsciutto);
+
+        List<Pizza>  pizzeByToppingFunghi = pizzaRepository.findByToppingsNomeIgnoreCase("funghi");
+
+        System.out.println("--------******* Pizze con topping funghi");
+        pizzeByToppingFunghi.forEach(System.out::println);
+
 
     }
 }
